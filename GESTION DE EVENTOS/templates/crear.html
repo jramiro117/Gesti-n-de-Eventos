@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Evento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="menu">
+        <ion-icon name="menu-outline"></ion-icon>
+        <ion-icon name="close-outline"></ion-icon>
+    </nav>
+
+    <div class="barra-lateral">
+        <div>
+            <div class="nombre-pagina">
+                <ion-icon id="cloud" name="cloud-outline"></ion-icon>
+                <span>Menú</span>
+            </div>
+        </div>
+
+        <nav class="navegacion">
+            <ul>
+                <li>
+                    <a id="crear-evento" href="{{ url_for('crear_evento') }}">
+                        <ion-icon name="create-outline"></ion-icon>
+                        <span>Crear evento</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="mis-eventos" href="{{ url_for('mis_eventos') }}">
+                        <ion-icon name="mail-unread-outline"></ion-icon>
+                        <span>Mis Eventos</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="proximos-eventos" href="{{ url_for('proximos_eventos') }}">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <span>Próximos Eventos</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="eventos-registrados" href="#">
+                        <ion-icon name="clipboard-outline"></ion-icon>
+                        <span>Eventos registrados</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="mi-perfil" href="#">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <span>Mi Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="cerrar-sesion" href="{{ url_for('logout') }}">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <span>Cerrar sesión</span>
+                    </a>
+                </li>                
+            </ul>
+        </nav>
+
+        <div>
+            <div class="linea"></div>
+
+            <div class="modo-oscuro">
+                <div class="info">
+                    <ion-icon name="moon-outline"></ion-icon>
+                    <span>Mod Oscuro</span>
+                </div>
+                <div class="switch">
+                    <div class="base">
+                        <div class="circulo"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="usuario">
+                <img src="/Jhampier.jpg" alt="">
+                <div class="info-usuario">
+                    <div class="nombre-email">
+                        <span class="nombre">{{ session['nombre'] }}</span>
+                        <span class="email">{{ session['correo'] }}</span>
+                    </div>
+                    <ion-icon id="opciones-usuario" name="ellipsis-vertical-outline"></ion-icon>
+                    <div class="opciones-menu">
+                        <ul>
+                            <li><a href="#">Editar perfil</a></li>
+                            <li><a href="#">Iniciar sesión</a></li>
+                            <li><a href="#">Registrarse</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <h1>Crear Evento</h1>
+        <form id="formulario-crear-evento" action="{{ url_for('crear_evento') }}" method="POST" class="formulario-crear-evento">
+            <h2>Formulario de Creación de Evento</h2>
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" required>
+            </div>
+            <div class="form-group">
+                <label for="lugar">Lugar:</label>
+                <input type="text" id="lugar" name="lugar" required>
+            </div>
+            <div class="form-group">
+                <label for="capacidad">Capacidad Máxima:</label>
+                <input type="number" id="capacidad" name="capacidad" required>
+            </div>
+            <button type="submit">Crear Evento</button>
+        </form>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

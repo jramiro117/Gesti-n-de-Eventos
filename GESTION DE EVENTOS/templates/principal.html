@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <ion-icon name="menu-outline"></ion-icon>
+        <ion-icon name="close-outline"></ion-icon>
+    </div>
+
+    <div class="barra-lateral">
+        <div>
+            <div class="nombre-pagina">
+                <ion-icon id="cloud" name="cloud-outline"></ion-icon>
+                <span>Menú</span>
+            </div>
+        </div>
+
+        <nav class="navegacion">
+            <ul>
+                <li>
+                    <a id="crear-evento" href="{{ url_for('crear_evento') }}">
+                        <ion-icon name="create-outline"></ion-icon>
+                        <span>Crear evento</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="mis-eventos" href="{{ url_for('mis_eventos') }}">
+                        <ion-icon name="mail-unread-outline"></ion-icon>
+                        <span>Mis Eventos</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="proximos-eventos" href="{{ url_for('proximos_eventos') }}">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <span>Próximos Eventos</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="eventos-registrados" href="#">
+                        <ion-icon name="clipboard-outline"></ion-icon>
+                        <span>Eventos registrados</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="mi-perfil" href="#">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <span>Mi Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="cerrar-sesion" href="{{ url_for('logout') }}">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <span>Cerrar sesión</span>
+                    </a>
+                </li>                
+            </ul>
+        </nav>
+
+        <div>
+            <div class="linea"></div>
+
+            <div class="modo-oscuro">
+                <div class="info">
+                    <ion-icon name="moon-outline"></ion-icon>
+                    <span>Mod Oscuro</span>
+                </div>
+                <div class="switch">
+                    <div class="base">
+                        <div class="circulo"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="usuario">
+                <img src="/Jhampier.jpg" alt="">
+                <div class="info-usuario">
+                    <div class="nombre-email">
+                        <span class="nombre">{{ session['nombre'] }}</span>
+                        <span class="email">{{ session['correo'] }}</span>
+                    </div>
+                    <ion-icon id="opciones-usuario" name="ellipsis-vertical-outline"></ion-icon>
+                    <div class="opciones-menu">
+                        <ul>
+                            <li><a href="#">Editar perfil</a></li>
+                            <li><a href="#">Iniciar sesión</a></li>
+                            <li><a href="#">Registrarse</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <h1 id="titulo-principal">Contenido</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <p id="descripcion-principal">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti iure nam aliquid debitis voluptatum reiciendis reprehenderit minus, et sed hic suscipit facilis enim totam. Nesciunt eveniet velit modi voluptates temporibus?</p>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
